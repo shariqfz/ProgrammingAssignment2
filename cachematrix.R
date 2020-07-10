@@ -1,32 +1,29 @@
-## Put comments here that give an overall description of what your
-## functions do
-
-## Write a short comment describing this function
+#The fllowing function is similar to the example. only variables replaced from 'm' to 'i' and 'mean' to 'inv' .
 
 makeCacheMatrix <- function(x = matrix()) {
-  m <- NULL
+  i <- NULL
   set <- function(y){
     x <<- y
-    m <<- NULL
+    i <<- NULL
   }
   get <- function() x
-  setinv <- function(inv) m <<- inv
-  getinv <- function() m
+  setinv <- function(inv) i <<- inv
+  getinv <- function() i
   list(set = set, get = get, setinv = setinv, getinv = getinv)
 
 }
 
 
-## Write a short comment describing this function
+#In the below function, replaced mean() fn. by solve() fn., which computes inverse of a matrix.
 
 cacheSolve <- function(x, ...) {
-  m <- x$getmean()
-  if(!is.null(m)) {
+  i <- x$getinv()
+  if(!is.null(i)) {
     message("getting cached data")
-    return(m)
+    return(i)
   }
   data <- x$get()
-  m <- solve(data, ...)
-  x$setmean(m)
-  m
+  i <- solve(data, ...)
+  x$setinv(i)
+  i
 }
